@@ -4,7 +4,7 @@
 
 /********************       OSD HARDWARE settings      *********************/
 //Choose ONLY ONE option:
-//#define MINIMOSD                  // Uncomment this if using standard MINIMOSD hardware (default)
+#define MINIMOSD                  // Uncomment this if using standard MINIMOSD hardware (default)
 //#define MICROMINIMOSD             // Uncomment this if using the MICRO MINIMOSD hardware
 //#define AEROMAX                   // Uncomment this if using MWOSD AEROMAX hardware
 //#define RTFQV1                    // Uncomment this if using standard RTFQ/Witespy V1.1 OSD, select this to correct for both swapped bat1/bat 2 and to also use alternative resistors / pinouts.
@@ -33,7 +33,7 @@
 
 // latest release...
 //#define BETAFLIGHT                // Uncomment this if you are using latest BETAFLIGHT version 3.1 onwards
-//#define CLEANFLIGHT               // Uncomment this if you are using latest CLEANFLIGHT version from repository (2.2.0 at time of this MWOSD release)
+#define CLEANFLIGHT               // Uncomment this if you are using latest CLEANFLIGHT version from repository (2.2.0 at time of this MWOSD release)
 //#define iNAV                      // Uncomment this if you are using latest iNAV version from repository (1.01 at time of this MWOSD release)
 //#define iNAV_KK                   // Uncomment this if you are using AEROMAX OSD and BARO sensor addition with iNAV with KK audio vario
 //#define APM                       // Uncomment this if you are using Ardupilot on APM / PIXHAWK / other supported hardware. Supports most MAVLINK 1.0 compatible FC
@@ -69,12 +69,12 @@
 
 /********************       AIRCRAFT/INSTALLATION TYPE settings      *********************/
 //Choose ONLY ONE option:
-//#define ROTORCRAFT                // Default for multirotors etc.
+#define ROTORCRAFT                // Default for multirotors etc.
 //#define FIXEDWING                 // Uncomment this if you are using fixed wing with MultiWii or Baseflight
 
 
 /********************       Debug      *********************/
-//#define MENU_DEBUG                  // Enable to display debug values in OSD menu 
+//#define MENU_DEBUG                  // Enable to display debug values in OSD menu
 
 /*--------------------------       INITIALISATION options       ----------------------------------------------------*/
 /*--------------------------       INITIALISATION options       ----------------------------------------------------*/
@@ -123,12 +123,12 @@
 
 
 /********************       GPS OSD settings (GPS / NAZA)      *********************/
-#define GPSHOMEFIX         10       // Number of consecutive seconds of valid fixes before home will be set. Max 32 
-#define HOMESATFIX          6       // Minimum number of sats required when setting initial home location. 
+#define GPSHOMEFIX         10       // Number of consecutive seconds of valid fixes before home will be set. Max 32
+#define HOMESATFIX          6       // Minimum number of sats required when setting initial home location.
 #define GPSOSDARMDISTANCE  20       // distance from home in meters when GPSOSD arms. Starts flight timer etc.
 //#define GPSOSDHOMEDISTANCE 40     // distance from home in meters when GPSOSD is home. When speed is low it disarms and displays summary screen.
 #define GPSOSDLANDED        8       // seconds OSD needs to have landed (within home distance and speed less than xxx) before triggering summary. Max 32
-#define GPSDOP 500                  // UBLOX only - minimum PDOP required for sat fix. A DOP of 2.00 is considered good 
+#define GPSDOP 500                  // UBLOX only - minimum PDOP required for sat fix. A DOP of 2.00 is considered good
 //#define PPM_CONTROL               // Enables full OSD menu, screen switching, RSSI, Throttle feature, virtual current sensor, etc using a PPM signal into OSD PWM input pin (RSSI pin on basic MINIM hardware). Requires TX type to be set below.
 //#define PWM_OSD_SWITCH            // Enables 3 way screen switch from a RX PWM channel connected to the OSD PWM input pin (RSSI pin on basic MINIM hardware). AEROMAX OSD has a dedicated connection.
 //#define PWM_THROTTLE              // Enables throttle feature, virtual current sensor using RC throttle connected into OSD PWM input pin (RSSI pin on basic MINIM hardware). AEROMAX OSD has a dedicated connection with this enabled by default.
@@ -136,7 +136,7 @@
 
 /********************       FILTER settings      *********************/
 //Choose ONLY ONE option to enable filtered smoother readings of voltage / current / RSSI :
-#define FILTER_AVG                  // Enable standard averaging filter  
+#define FILTER_AVG                  // Enable standard averaging filter
 //#define FILTER_HYSTERYSIS 2       // Alternative filter with hysteris to provide smoother changes. Higher number = more filtering. Max 4
 
 
@@ -149,7 +149,7 @@
 #define ALARM_VOLTAGE               // Text alerts if voltage below voltage alarm - in addition to flashing voltage indicator
 #define ALARM_SATS                  // Text alerts if sats below MINSATFIX - in addition to flashing sat indicator
 //#define ALARM_GPS 5               // Text alerts if no GPS data for more than x secs. intended for GPSOSD only. Sets GPS sats to zero
-#define ALARM_MSP 5                 // Text alerts if no Flight controller data for more than x secs. 
+#define ALARM_MSP 5                 // Text alerts if no Flight controller data for more than x secs.
 
 
 /********************       AIRCRAFT type=FIXEDWING settings      *********************/
@@ -163,7 +163,7 @@
 // glidescope is an assistant indicator to help with landing approach. glide angle can be uses as alternative to glidescope or as an indicator for minimim distance/altitude ratio to maintain signal quality
 #define USEGLIDESCOPE               // ILS glidescope can be enabled / disabled on GUI.
 //#define USEGLIDEANGLE 100         // alternativel option - display ILS approach angle/ aircraft elevation from home as real value instead of glidescope. Set angle below which glideangle is displayed. 100 = permanent.
-#define GLIDEANGLE  80              // ILS glidescope angle where 40 = 4.0° requires enabling in layouts. 
+#define GLIDEANGLE  80              // ILS glidescope angle where 40 = 4.0° requires enabling in layouts.
 #define GLIDEWINDOW 40              // ILS glidescope angle where Window of 40 = 4.0° - 1.0 deg scope gradients, 80 =  2.0 deg scope gradients. Requires enabling in layouts.
 
 
@@ -177,9 +177,9 @@
 
 
 /******************** Mavlink settings *********************/
-#define MAV_COM_ID 1                // Component ID of MAV. Change if required. 
-#define MAV_STATUS 6                // Enable to display mavlink system messages up to and including category X. 5 = default 
-#define MAV_STATUS_TIMER 4          // How long to display MAV status messages. 4 = default 
+#define MAV_COM_ID 1                // Component ID of MAV. Change if required.
+#define MAV_STATUS 6                // Enable to display mavlink system messages up to and including category X. 5 = default
+#define MAV_STATUS_TIMER 4          // How long to display MAV status messages. 4 = default
 #define MAV_ALT_THROTTLE            // Enable to use MAVLINK throttle value when armed. Disable to use raw RC channel.
 //#define MAV_ALL                   // To act on data from all MAV SYSID in stream. NOT recommended. Specify ID in GUI. Default=1 upon reset.
 //#define MAV_COMP_ALL              // To act on data from all MAV COMPONENTS in stream. Overrides MAV_COM_ID. Use if do not know MAV_COM_ID. Recommended for iNAV telemetry.
@@ -206,18 +206,18 @@
 
 
 /********************       CALLSIGN settings      *********************/
-#define   CALLSIGNINTERVAL 60       // How frequently to display Callsign (in seconds) 
+#define   CALLSIGNINTERVAL 60       // How frequently to display Callsign (in seconds)
 #define   CALLSIGNDURATION 4        // How long to display Callsign (in seconds)
 //#define FREETEXTLLIGHTS           // Alternative option - enable to display freetext (or callsign) when LLIGHTS Switch active on TX.
 //#define FREETEXTGIMBAL            // Alternative option - enable to display freetext (or callsign) when GIMBAL Switch active on TX.
 
 /********************       STARTUP settings      *********************/
 //#define INTRO_VERSION               "MWOSD" // Call the OSD something else if you prefer.
-#define INTRO_MENU                  // Enable to display TX stick MENU 
+#define INTRO_MENU                  // Enable to display TX stick MENU
 #define INTRO_CALLSIGN              // Enable to display callsign at startup
 #define INTRO_SIGNALTYPE            // Enable to display video type at startup
 //#define INTRO_FC                  // Enable to display FC version at startup
-#define INTRO_DELAY 6               // Seconds intro screen should show for. Default is 6 
+#define INTRO_DELAY 6               // Seconds intro screen should show for. Default is 6
 //#define STARTUPDELAY 500          // Enable alternative startup delay (in ms) to allow MAX chip voltage to rise fully and initialise before configuring. Deafult = 1000
 
 
@@ -233,7 +233,7 @@
 /********************       Display Settings         ************************/
 #define MAXSTALLDETECT              // Enable to attempt to detect MAX chip stall from bad power. Attempts to restart.
 #define AUTOCAM                     // Disable if no screen display. Enables autodetect Camera type PAL/NTSC. Overrides GUI/OSD settings.
-#define USE_VSYNC                   // Disable if no screen display. Removes sparklies as updates screen during blanking time period. 
+#define USE_VSYNC                   // Disable if no screen display. Removes sparklies as updates screen during blanking time period.
 #define DECIMAL '.'                 // Decimal point character, change to what suits you best (.) (,)
 //#define ALT_CENTER                // Enable alternative center crosshair
 //#define FORCECROSSHAIR            // Forces a crosshair even if no AHI / horizon used
@@ -258,12 +258,12 @@
 //#define AHIROLLMAX  900           // Specify maximum AHI roll value displayed. Default 400 = 40.0 degrees - use no more that 900
 //#define AHIPITCHSCALE 100         // Specify scaling sensitvity for Pitch. Higher number = pitches more on OSD
 //#define AHIROLLSCALE 100          // Specify scaling sensitvity for Roll. Higher number = rolls more on OSD
-#define AHILEVEL                    // Enable to display AHI level indicators on sidebars 
-#define APINDICATOR                 // Enable to display AUTOPILOT instead of RTH distance 
+#define AHILEVEL                    // Enable to display AHI level indicators on sidebars
+#define APINDICATOR                 // Enable to display AUTOPILOT instead of RTH distance
 #define GUISENSORS                  // Enable if wish to view raw sensor data on GUI
-#define LONG_RANGE_DISPLAY          // Enable this to for long range display consolidation - displays distance in KM or feet when exceed 9999m or ft. 
-#define AIRMODE                     // Enable this to display airmode icon. 
-#define MASKGPSLOCATION             // Disable to save memory if not used. Enables MASK GPS settings on GUI. Coordinates displayed with major digits XXX set to random location "XXX.DDDDDDD" 
+#define LONG_RANGE_DISPLAY          // Enable this to for long range display consolidation - displays distance in KM or feet when exceed 9999m or ft.
+#define AIRMODE                     // Enable this to display airmode icon.
+#define MASKGPSLOCATION             // Disable to save memory if not used. Enables MASK GPS settings on GUI. Coordinates displayed with major digits XXX set to random location "XXX.DDDDDDD"
 //#define TEXTMODE                  // Enable to display the flyingmode as text instead of symbols
 //#define OSD_SWITCH                // Forces original 2 way multiwii screen switch using OSD Switch via Flight Controller. MUST Ensure enabled on flight controller - e.g. #define OSD_SWITCH on multiwii
 //#define NOSUMMARYTHROTTLERESET    // Enable to supress summary display clearing from throttle
@@ -276,9 +276,9 @@
 /********************       Power / efficiency display Settings         ************************/
 #define DISPLAYWATTS                // Disable to save memory if not used. Enable this to display Watts
 #define DISPLAYEFFICIENCY           // Disable to save memory if not used. Enable this to display Watts/KMh or Mph for efficiency
-#define DISPLAYAVGEFFICIENCY        // Disable to save memory if not used. Enable this to display average mAh used / per KM or Mile travelled. 
-#define DISPLAYEFFICIENCYTIME       // Enable this to display effieciency time remaining above elapsed time. 
-//#define EFFICIENCYTIMEINST        // Enable this for time remaining display to be based upon instantaneous current draw instead of average battery consumption during flight so far. 
+#define DISPLAYAVGEFFICIENCY        // Disable to save memory if not used. Enable this to display average mAh used / per KM or Mile travelled.
+#define DISPLAYEFFICIENCYTIME       // Enable this to display effieciency time remaining above elapsed time.
+//#define EFFICIENCYTIMEINST        // Enable this for time remaining display to be based upon instantaneous current draw instead of average battery consumption during flight so far.
 
 
 /********************       Visual Vario / climbrate Settings         ************************/
@@ -295,7 +295,7 @@
 //#define AUDIOVARIO AUDIOPIN         // Enable this for audio vario. AUDIOPIN = D2 on AEROMAX hardware. Alternatively use A3 (RSSI) with other hardware
 //#define AUDIOVARIOSWITCH            // Enable this to use screen layouts to enable/disable vario. If visual vario is displayed, the audio vario is on
 #define AUDIOVARIOTHRESHOLDCLIMB  10  // Threshold for climbing (cm/s)
-#define AUDIOVARIOTHRESHOLDSINK  -20  // Threshold for sinking  (cm/s) 
+#define AUDIOVARIOTHRESHOLDSINK  -20  // Threshold for sinking  (cm/s)
 #define AUDIOVARIOSILENTDEADBAND      // Enable for silent deadband otherwise will hear near thermal tone
 
 
@@ -308,7 +308,7 @@
 //#define KKAUDIOVARIO AUDIOPIN     // Enable this for audio vario. AUDIOPIN = D2 on AEROMAX hardware. Alternatively use A3 (RSSI) with other hardware
 //#define AUDIOVARIOSWITCH          // Enable this to use screen layouts to enable/disable vario. If visual vario is displayed, the audio vario is on
 #define KKDEADBANDLOW  -25          // Deadband threshold for sinking (Set to -500 to disable sink tones). 0 for no deadband
-#define KKDEADBANDHIGH  15          // Deadband threshold for climbing. 0 for no deadband 
+#define KKDEADBANDHIGH  15          // Deadband threshold for climbing. 0 for no deadband
 
 
 /********************   RC TX Settings     *********************/
@@ -362,10 +362,10 @@
 /********************  TEMPERATURE  settings      *********************/
 // Documentation: https://github.com/ShikOfTheRa/scarab-osd/wiki/Temperature-probe
 #define SHOW_TEMPERATURE            // Disable to save memory if temerature not used
-//#define USE_TEMPERATURE_SENSOR    // MAvlink users must enable if you have a hardware temperature sensor - e.g. LM35 **UNTESTED** 
+//#define USE_TEMPERATURE_SENSOR    // MAvlink users must enable if you have a hardware temperature sensor - e.g. LM35 **UNTESTED**
 #define TEMPERATUREMAX 50           // Temperature warning value
-#define TEMPCAL_0      0            // Calibration value for 0 degrees C (range = 0-1024 as per arduino analogue value) 
-#define TEMPCAL_100    931          // Calibration value for 100 degrees C (range = 0-1024 as per arduino analogue value).  
+#define TEMPCAL_0      0            // Calibration value for 0 degrees C (range = 0-1024 as per arduino analogue value)
+#define TEMPCAL_100    931          // Calibration value for 100 degrees C (range = 0-1024 as per arduino analogue value).
 
 
 /********************  RECORD CAPTURE  settings      *********************/
@@ -379,7 +379,7 @@
 // This is used for those who want to specify non default throttle calibration values.
 // To use comment out AUTOTHROTTLE and adjusts the maximum and minimum throttle values
 #define AUTOTHROTTLE
-#define HIGHTHROTTLE 1900           // Maximum recognised value for throttle 
+#define HIGHTHROTTLE 1900           // Maximum recognised value for throttle
 #define LOWTHROTTLE  1100           // Minimum recognised value for throttle
 
 
@@ -394,12 +394,12 @@
 // Regional RF frequency regulations: Choose ONLY ONE option:
 #define VTX_REGION_UNRESTRICTED     // Enable for all 40 channels
 //#define VTX_REGION_AUSTRALIA      // Enable for AU legal channels and power level only
-#define DISPLAY_VTX_INFO            // Enable to show frequency in menu display. 
+#define DISPLAY_VTX_INFO            // Enable to show frequency in menu display.
 
 
 /********************           Submersible settings           *********************/
 // Specify fluid density for submersible (density = 997 freshwater, 1029 for seawater): Choose ONLY ONE option:
-#define FRESHWATER                  // Uncomment this if you are using a submersible in freshwater 
+#define FRESHWATER                  // Uncomment this if you are using a submersible in freshwater
 //#define SEAWATER                  // Uncomment this if you are using a submersible in seawater
 //#define FLUID_DENSITY 997         // Uncomment this if you are using a submersible and wish to specify a particular fluid density
 
@@ -439,7 +439,3 @@
 
 /********************  Under developemnt      *********************/
 // This is a work in process. Not completed for implementation
-
-
-
-
