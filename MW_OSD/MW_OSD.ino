@@ -74,9 +74,9 @@ uint16_t UntouchedStack(void)
 #define PGMSTR(p) (char *)pgm_read_word(p)
 
 //------------------------------------------------------------------------
-#define MWVERS "MW-OSD - R1.9.1.2"
+#define MWVERS "MW-OSD - R1.9.1.3"
 //#define MWVERS "MW-OSD - R1.9"
-#define MWOSDVERSION 1912 // 1660=1.6.6.0 for GUI
+#define MWOSDVERSION 1913 // 1660=1.6.6.0 for GUI
 #define EEPROMVER 17      // for eeprom layout verification
 
 #include <avr/pgmspace.h>
@@ -270,7 +270,7 @@ void loop()
       tx_throttle = 4;
       break;
   }
-#endif // TX_GUI_CONTROL   //PITCH,YAW,THROTTLE,ROLL order controlled by GUI
+#endif // TX_GUI_CONTROL   //PITCH,YAW,THROTTLE,ROLL order controlled by GUI   
 
   alarms.active = 0;
   timer.loopcount++;
@@ -358,7 +358,7 @@ void loop()
     timer.Blink10hz = !timer.Blink10hz;
 #ifdef USEMS5837
     MS5837sensor.read();
-#endif //USEMS5837
+#endif //USEMS5837  
     if (GPS_fix && armed) {
       if (Settings[S_UNITSYSTEM])
         tripSum += GPS_speed * 0.0032808;    //  100/(100*1000)*3.2808=0.0016404     cm/sec ---> ft/50msec
@@ -389,7 +389,7 @@ void loop()
       }
 #endif // KISS
     }
-#endif //MSP_SPEED_MED
+#endif //MSP_SPEED_MED  
 #endif //GPSOSD
   }  // End of slow Timed Service Routine (100ms loop)
 
@@ -564,7 +564,7 @@ void loop()
         previousarmedstatus = 0;
         configMode = 0;
       }
-#endif //HIDESUMMARY
+#endif //HIDESUMMARY      
       if (configMode)
       {
         displayConfigScreen();
@@ -677,7 +677,7 @@ void loop()
         displayAngleToHome();
         displayGPSdop();
         // displayfwglidescope(); //note hook for this is in display horizon function
-        if (!armed)
+        if (!armed) 
           GPS_speed = 0;
         display_speed(GPS_speed, GPS_speedPosition, SYM_SPEED_GPS);
         display_speed(AIR_speed, AIR_speedPosition, SYM_SPEED_AIR);
@@ -732,7 +732,7 @@ void loop()
 #if defined (GPSTIME) && !defined (UBLOX)
     datetime.unixtime++;
     updateDateTime(datetime.unixtime);
-#endif //GPSTIME
+#endif //GPSTIME    
     if (timer.armedstatus > 0)
       timer.armedstatus--;
     timer.seconds += 1000;
@@ -765,7 +765,7 @@ void loop()
     else {
       timer.GPS_active--;
     }
-#endif // ALARM_GPS
+#endif // ALARM_GPS 
     if (timer.disarmed > 0) {
       timer.disarmed--;
     }
@@ -988,18 +988,18 @@ void setMspRequests() {
 #endif
 #ifdef MSP_USE_ANALOG
       REQ_MSP_ANALOG |
-#endif //MSP_USE_ANALOG
+#endif //MSP_USE_ANALOG  
 #ifdef MSPV2
       REQ_MSP2_INAV_AIR_SPEED |
 #endif
       REQ_MSP_RC;
 
     if (!armed) {
-      modeMSPRequests |=
+      modeMSPRequests |= 
         REQ_MSP_BOX |
 #if defined INTRO_FC && defined PROTOCOL_MSP
         REQ_MSP_FC_VERSION |
-#endif // INTRO_FC && defined PROTOCOL_MSP
+#endif // INTRO_FC && defined PROTOCOL_MSP      
 #ifdef USE_FC_VOLTS_CONFIG
 #if defined(CLEANFLIGHT) || defined(BETAFLIGHT)
         REQ_MSP_VOLTAGE_METER_CONFIG |
@@ -1052,7 +1052,7 @@ void readEEPROM(void)
     //DDRC &=B11110111;
    #ifndef INTD5
    Settings[S_PWM_PPM] = 0;
-   #endif
+   #endif 
   }
 #endif
 #if defined INTD5
@@ -1082,7 +1082,7 @@ void readEEPROM(void)
   //VTX power jumper being installed. If we aren't using 5V ref there is
   //the chance we will power up on wrong frequency.
   Settings[S_VREFERENCE] = 1;
-#endif //IMPULSERC_HELIX
+#endif //IMPULSERC_HELIX 
 
   if (Settings[S_VREFERENCE])
     analogReference(DEFAULT);
@@ -1205,7 +1205,7 @@ void ProcessSensors(void) {
       }
     }
     //--- Apply filtering
-#if defined FILTER_HYSTERYSIS  // Hysteris incremental averaged change
+#if defined FILTER_HYSTERYSIS  // Hysteris incremental averaged change    
     static uint16_t shfilter[SENSORTOTAL];
     int16_t diff = (sensortemp << FILTER_HYSTERYSIS) - shfilter[sensor];
     if (abs(diff) > (FHBANDWIDTH << FILTER_HYSTERYSIS)) {
@@ -1218,7 +1218,7 @@ void ProcessSensors(void) {
       shfilter[sensor]--;
     }
     sensorfilter[sensor][SENSORFILTERSIZE] = (shfilter[sensor] >> FILTER_HYSTERYSIS << 3);
-#elif defined FILTER_AVG   // Use averaged change
+#elif defined FILTER_AVG   // Use averaged change    
     sensorfilter[sensor][SENSORFILTERSIZE] = sensorfilter[sensor][SENSORFILTERSIZE] - sensorfilter[sensor][sensorindex];
     sensorfilter[sensor][sensorindex] = (sensorfilter[sensor][sensorindex] + sensortemp) >> 1;
     sensorfilter[sensor][SENSORFILTERSIZE] = sensorfilter[sensor][SENSORFILTERSIZE] + sensorfilter[sensor][sensorindex];
@@ -1314,43 +1314,43 @@ ISR(PCINT1_vect) { // Default Arduino A3 Atmega C3
   uint8_t l_pinstatus = PINC;
   sei();
   l_PulseDuration = l_CurrentTime - s_LastRising;
-  if ((l_pinstatus & (1 << PWMPIN1))) { // transitioned to high
+  if ((l_pinstatus & (1 << PWMPIN1))) { // transitioned to high 
     s_LastRising = l_CurrentTime;
     if ((l_PulseDuration) > 3000) { //assume this is PPM gap so exit
       return;
-    }
+    }    
   }
-  else{ // // transitioned to low
+  else{ // // transitioned to low 
     if ((900 < l_PulseDuration) && (l_PulseDuration < 2200)) {
 #if defined DEBUG
       pwmval1 = l_PulseDuration;
-#endif
+#endif      
       pwmRSSI = l_PulseDuration;
     }
-  }
+  }  
 }
 #else // INTD5
 ISR(PCINT1_vect) { // Default Arduino A3 Atmega C3
  #define PWMPIN1 DDC3
   static uint8_t  s_RCchan = 1;
   static uint16_t s_LastRising = 0;
-  static uint16_t s_LastFalling = 0;
+  static uint16_t s_LastFalling = 0;  
   uint16_t l_PulseDuration;
   uint16_t l_CurrentTime = micros();
   uint8_t l_pinstatus = PINC;
   sei();
   l_PulseDuration = l_CurrentTime - s_LastRising;
 
-  if ((l_pinstatus & (1 << PWMPIN1))) { // transitioned to high
+  if ((l_pinstatus & (1 << PWMPIN1))) { // transitioned to high 
     s_LastRising = l_CurrentTime;
     if ((l_PulseDuration) > 3000) { //assume this is PPM gap so exit
-      s_RCchan = 1;
+      s_RCchan = 1; 
       return;
-    }
+    }    
     if (Settings[S_PWM_PPM]) {//ppm
       if (s_RCchan <= TX_CHANNELS) { // avoid array overflow if > standard ch PPM
         MwRcData[s_RCchan] = l_PulseDuration; // Val updated
-      }
+      }   
       if (s_RCchan == 4){
 #if defined DEBUG
         pwmval1 = l_PulseDuration;
@@ -1362,7 +1362,7 @@ ISR(PCINT1_vect) { // Default Arduino A3 Atmega C3
       s_RCchan++;
     }
   }
-  else{ // // transitioned to low
+  else{ // // transitioned to low 
     s_LastFalling = l_CurrentTime;
     if (!Settings[S_PWM_PPM]) {//pwm
       if ((900 < l_PulseDuration) && (l_PulseDuration < 2250)) {
@@ -1390,7 +1390,7 @@ ISR(PCINT1_vect) { // Default Arduino A3 Atmega C3
 #endif
       }
     }
-  }
+  }  
 }
 #endif // INTD5
 
@@ -1401,22 +1401,22 @@ ISR(PCINT2_vect) { // // Secondary Arduino D5 Atmega D5
   #define PWMPIN2 DDD5
   static uint8_t  s_RCchan = 1;
   static uint16_t s_LastRising = 0;
-  static uint16_t s_LastFalling = 0;
+  static uint16_t s_LastFalling = 0;  
   uint16_t l_PulseDuration;
   uint16_t l_CurrentTime = micros();
   uint8_t l_pinstatus = PIND;
   sei();
   l_PulseDuration = l_CurrentTime - s_LastRising;
-  if ((l_pinstatus & (1 << PWMPIN2))) { // transitioned to high
+  if ((l_pinstatus & (1 << PWMPIN2))) { // transitioned to high 
     s_LastRising = l_CurrentTime;
     if ((l_PulseDuration) > 3000) { //assume this is PPM gap so exit
-      s_RCchan = 1;
+      s_RCchan = 1; 
       return;
-    }
+    }    
     if (Settings[S_PWM_PPM]) {//ppm
       if (s_RCchan <= TX_CHANNELS) { // avoid array overflow if > standard ch PPM
         MwRcData[s_RCchan] = l_PulseDuration; // Val updated
-      }
+      }   
       if (s_RCchan == 4){
 #if defined DEBUG
         pwmval2 = l_PulseDuration;
@@ -1428,7 +1428,7 @@ ISR(PCINT2_vect) { // // Secondary Arduino D5 Atmega D5
       s_RCchan++;
     }
   }
-  else{ // // transitioned to low
+  else{ // // transitioned to low 
     s_LastFalling = l_CurrentTime;
     if (!Settings[S_PWM_PPM]) {//pwm
       if ((950 < l_PulseDuration) && (l_PulseDuration < 2150)) {
@@ -1452,7 +1452,7 @@ ISR(PCINT2_vect) { // // Secondary Arduino D5 Atmega D5
 #endif
       }
     }
-  }
+  }    
 }
 #endif // INTD5
 
@@ -1489,7 +1489,7 @@ void useairspeed() {
   int16_t Pa = map(pressuresensor, -410, 410, -2000, 2000); // Pressure - actual pascals
   AIR_speed = (int32_t)100 * sqrt((2 * Pa) / AIRDENSITY); // Speed required in cm/s
 }
-#endif //USE_AIRSPEED_SENSOR
+#endif //USE_AIRSPEED_SENSOR 
 
 void reverseChannels(void) { //ifdef (TX_REVERSE)
   for (uint8_t i = 1; i <= 4; i++) {
@@ -1497,3 +1497,5 @@ void reverseChannels(void) { //ifdef (TX_REVERSE)
       MwRcData[i] = 3000 - MwRcData[i];
   }
 }
+
+
